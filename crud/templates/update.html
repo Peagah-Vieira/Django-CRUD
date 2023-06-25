@@ -1,17 +1,74 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Django - CRUD</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/update.css' %}" />
   </head>
   <body>
-    <h1>Update - {{ pessoa.id }}</h1>
+    <div class="registration-form">
+      <form action="{% url 'update' person.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control item"
+            id="username"
+            name="name"
+            placeholder="Name"
+            value="{{person.name}}"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control item"
+            id="password"
+            name="lastName"
+            placeholder="Last Name"
+            value="{{person.lastName}}"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control item"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value="{{person.email}}"
+          />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-block create-account">
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
 
-    <form action="{% url 'update' pessoa.id %}" method="post">
-      {% csrf_token %}
-      <input type="text" name="nome" value="{{pessoa.nome}}" />
-      <input type="submit" value="Atualizar" />
-    </form>
+    <!-- page specific script tag here -->
+    {% block script %}
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"
+    ></script>
+    {% endblock script %}
   </body>
 </html>

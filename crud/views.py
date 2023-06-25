@@ -17,19 +17,23 @@ def create(request):
 
 
 def update(request, id):
-    vnome = request.POST.get("name")
-    pessoa = Pessoa.objects.get(id=id)
-    pessoa.nome = vnome
-    pessoa.save()
+    updateName = request.POST.get("name")
+    updateLastName = request.POST.get("lastName")
+    updateEmail = request.POST.get("email")
+    person = Pessoa.objects.get(id=id)
+    person.name = updateName
+    person.lastName = updateLastName
+    person.email = updateEmail
+    person.save()
     return redirect(home)
 
 
 def delete(request, id):
-    pessoa = Pessoa.objects.get(id=id)
-    pessoa.delete()
+    person = Pessoa.objects.get(id=id)
+    person.delete()
     return redirect(home)
 
 
 def edit(request, id):
-    pessoa = Pessoa.objects.get(id=id)
-    return render(request, "update.html", {"pessoa": pessoa})
+    person = Pessoa.objects.get(id=id)
+    return render(request, "update.html", {"person": person})
